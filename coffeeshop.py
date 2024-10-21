@@ -9,6 +9,7 @@ menu={
    "brownie":2.50,
 }
 # print(menu)
+tax=1.1025
 
 # order=input("what would you like to order? Type exit to exit")
 print("menu")
@@ -21,12 +22,15 @@ while order!="exit":
    num=int(input("how many do you want to order?"))
    price+=menu[order]*num 
    tempprice=menu[order]*num
-   reciept[order,"x",num]=tempprice
+   reciept[order + " x " + str(num)]=tempprice
    order=input("what would you like to order? Type exit to exit ")
-reciept["subtotal"]=price
-print("your total price is $", price)
+reciept["subtotal"]="$"+str(price)
+reciept["tax"]=str(round((tax-1)*100, 2))+"%"
+reciept["total with tax"]="$"+str(round(price*tax, 2))
+print("your total price is $", round(price*tax, 2))
 print("reciept")
 for i in reciept:
    print(i,": $"+str(reciept[i]))
+
 
 
