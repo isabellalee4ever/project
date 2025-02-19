@@ -25,7 +25,7 @@ class shapes:
         for i in range(r):
             for c in range(45):
                 shapes.shape.forward(0.5 + (i/4))
-                shapes.shape.left(1)
+                shapes.shape.left(5)
                 shapes.shape.color(shapes.colors[c%8])
     def spiral2(r,x,y):
         shapes.shape.penup()
@@ -37,5 +37,3 @@ class shapes:
             shapes.shape.color(shapes.colors[c%8])
 s = shapes
 s.spiral(70, 0, 0)
-    
-    
