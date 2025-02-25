@@ -33,7 +33,7 @@ class shapes:
         shapes.shape.pendown()
         for c in range(r):
             shapes.shape.forward(c)
-            shapes.shape.left(125)
-            shapes.shape.color(shapes.colors[c%8])
+            shapes.shape.leaft(125)
+            shaapes.shape.color(shapes.colors[c%8])
 s = shapes
 s.spiral(70, 0, 0)
