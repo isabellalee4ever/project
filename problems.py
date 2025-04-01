@@ -32,4 +32,11 @@ def findperfect(start,end):
             perfects.append(i)
     return perfects
 
-print(findperfect(2,10))
+
+def ispalindrome(word):
+    word="".join(word.split()).lower()
+    word2 = word[::-1]
+    # for i in range(len(word)-1,-1,-1):
+    #     word2+=word[i]
+    return word == word2
+
