@@ -1,8 +1,10 @@
 class BankAccount:
-    def __init__(self, name, email, accountnumber, balance):
+    globelaccount = 0
+    def __init__(self, name:str, email:str, balance:int):
+        BankAccount.globelaccount += 1
         self.name = name
         self.email = email
-        self.accountnumber = accountnumber
+        self.accountnumber = BankAccount.globelaccount
         self.balance = balance
     def deposit(self, money):
         if money > 0:
@@ -27,3 +29,37 @@ class BankAccount:
         print("Email: ",self.email)
         print("Account Number: ",self.accountnumber)
         print("Balance: $",self.balance)
+    
+    def save(self, name, email, accountnumber, balance):
+        File = open(name, "w")
+        File.write(name)
+        File.write("\n")
+        File.write(email)
+        File.write("\n")
+        File.write(accountnumber)
+        File.write("\n")
+        File.write(str(balance))
+        File.write("\n")
+
+    def save(self):
+        File = open("People/" + self.name, "w")
+        File.write(self.name)
+        File.write("\n")
+        File.write(self.email)
+        File.write("\n")
+        File.write(self.accountnumber)
+        File.write("\n")
+        File.write(str(self.balance))
+        File.write("\n")
+
+
+User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
+User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
+User_account.seedetails()
+
+User_account.deposit(money = 10)
+User_account.seedetails()
+User_account.save()
+name=input("What is your name?")
+email=input("What is your email?")
+balance=input("How much money do you want to deposit?")
