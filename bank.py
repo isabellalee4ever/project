@@ -47,19 +47,48 @@ class BankAccount:
         File.write("\n")
         File.write(self.email)
         File.write("\n")
-        File.write(self.accountnumber)
+        File.write(str(self.accountnumber))
         File.write("\n")
         File.write(str(self.balance))
         File.write("\n")
 
+    def findaccount():
+        File = open("People" +  "r")
+        for i in File:
+            print(i)
 
-User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
-User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
-User_account.seedetails()
 
-User_account.deposit(money = 10)
-User_account.seedetails()
-User_account.save()
-name=input("What is your name?")
-email=input("What is your email?")
-balance=input("How much money do you want to deposit?")
+
+    #findaccount()
+def money(self):
+    money = input("Do you want to withdraw or desposit money from your account? Type withdraw if you want to withdraw. Type deposit if you want to deposit.")
+    if money == "withdraw":
+        withdraw = input("How much money do you want to withdraw?")
+        self.balance = self.balance - int(withdraw)
+        print("Your new balance is" , self.balance)
+    if money == "deposit":
+        deposit = input("How much money do you want to deposit?")
+        self.balance = self.balance + int(deposit)
+        print("Your new balance is" , self.balance)
+#User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
+#User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
+#User_account.seedetails()
+
+#User_account.deposit(money = 10)
+#User_account.seedetails()
+#User_account.save()
+login = input("Do you want to log into your account or sign up? If you want to log in type log in. If you want to sign up type sign up.")
+if login == "log in":
+    name=input("What is your name?")
+    email=input("What is your email?")
+    User_account = BankAccount(name, email, 0)
+    User_account.seedetails()
+
+if login == "sign up":
+    name=input("What is your name?")
+    email=input("What is your email?")
+    User_account = BankAccount(name, email, 0)
+    User_account.save()
+    User_account.seedetails()
+    money(User_account)
+
