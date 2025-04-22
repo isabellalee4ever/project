@@ -1,3 +1,4 @@
+import os
 class BankAccount:
     globelaccount = 0
     def __init__(self, name:str, email:str, balance:int):
@@ -52,24 +53,58 @@ class BankAccount:
         File.write(str(self.balance))
         File.write("\n")
 
-    def findaccount():
-        File = open("People" +  "r")
-        for i in File:
-            print(i)
+    def findaccount(self):   
+        directory = "People"
+        count = 0    
+        for i in os.listdir(directory):
+            with open(os.path.join(directory, i)) as f:
+                #print(f.read())
+                count += 1
+        self.accountnumber = count + 1
+        print(self.accountnumber)
 
-
+def findcurrent(anum):
+        directory = "People"
+        for i in os.listdir(directory):
+            with open(os.path.join(directory, i)) as f:
+                #(f.read())
+                lines=f.readlines()
+                line3 = lines[2]
+                print(line3)
 
     #findaccount()
 def money(self):
     money = input("Do you want to withdraw or desposit money from your account? Type withdraw if you want to withdraw. Type deposit if you want to deposit.")
     if money == "withdraw":
         withdraw = input("How much money do you want to withdraw?")
-        self.balance = self.balance - int(withdraw)
+        self.withdraw(int(withdraw))
+        #self.balance = self.balance - int(withdraw)
         print("Your new balance is" , self.balance)
     if money == "deposit":
         deposit = input("How much money do you want to deposit?")
-        self.balance = self.balance + int(deposit)
+        self.deposit(int(deposit))
+        #self.balance = self.balance + int(deposit)
         print("Your new balance is" , self.balance)
+
+def open(name, money):
+    File = open("People/" + name, "r")
+    lines=File.readlines()
+    lines[3]=money
+    File2 =   open("People/" + name, "w")
+    File2.writelines(lines)
+    File2.close()
+    #money = input("Do you want to withdraw or desposit money from your account? Type withdraw if you want to withdraw. Type deposit if you want to deposit.")
+    #if money == "withdraw":
+        #withdraw = input("How much money do you want to withdraw?")
+        #self.withdraw(int(withdraw))
+        #self.balance = self.balance - int(withdraw)
+        #print("Your new balance is" , self.balance)
+    #if money == "deposit":
+        #deposit = input("How much money do you want to deposit?")
+        #self.deposit(int(deposit))
+        #self.balance = self.balance + int(deposit)
+        #print("Your new balance is" , self.balance)
+        
 #User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
 #User_account = BankAccount("Isabella", "imtesting@gmail.com", 10)
 #User_account.seedetails()
@@ -79,15 +114,18 @@ def money(self):
 #User_account.save()
 login = input("Do you want to log into your account or sign up? If you want to log in type log in. If you want to sign up type sign up.")
 if login == "log in":
+    #number=input("What is your account number?")
     name=input("What is your name?")
-    email=input("What is your email?")
-    User_account = BankAccount(name, email, 0)
-    User_account.seedetails()
+    open(name, 5)
+    #email=input("What is your email?")
+    #User_account = BankAccount(name, email, 0)
+    #User_account.seedetails()
 
 if login == "sign up":
     name=input("What is your name?")
     email=input("What is your email?")
     User_account = BankAccount(name, email, 0)
+    User_account.findaccount()
     User_account.save()
     User_account.seedetails()
     money(User_account)
