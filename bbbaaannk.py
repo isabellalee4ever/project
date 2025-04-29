@@ -7,5 +7,14 @@ for i in os.listdir(directory):
         print(f.read())
         count += 1
         print(count)
+
+def findcurrent(anum):
+        directory = "People"
+        for i in os.listdir(directory):
+            with open(os.path.join(directory, i)) as f:
+                #(f.read())
+                lines=f.readlines()
+                line3 = lines[2]
+                print(line3)
         
         
