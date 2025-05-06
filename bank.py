@@ -10,7 +10,7 @@ class BankAccount:
 
     def deposit(self, money):
         if money > 0:
-            self.balance += money
+            self.balance = int(self.balance) + money
             print("deposited")
         else:
             print("You must deposit an amount of money greater than 0")
@@ -18,8 +18,8 @@ class BankAccount:
     def withdraw(self, money):
         if money<=0:
            print("You must withdraw an amount of money greater than 0")
-        elif money <= self.balance:
-            self.balance -= money
+        elif money <= int(self.balance):
+            self.balance = int(self.balance) + money
             print("withdrawn")
         else:
             print("The amount of money you are trying to withdraw is greater than your balance, you have withdrawn the entirety of your balance")
@@ -99,18 +99,38 @@ def get(name):
     balance = lines[3]
     return balance
 
+def addmoney(name, email, accountnumber, User_account):
+    File = open("People/" + name, "w")
+    File.write(name)
+    File.write("\n")
+    File.write(email)
+    File.write("\n")
+    File.write(str(accountnumber))
+    File.write("\n")
+    File.write(str(User_account.balance))
+    File.write("\n")
+
+def validemail(email):
+    if (email.find("@") != -1) and (email.find(".") != -1):
+        print("Valid Email!")
+    else:
+        print("Invalid Email!")
+        exit()
+
 login = input("Do you want to log into your account or sign up? If you want to log in type log in. If you want to sign up type sign up. ")
 if login.lower() == "log in":
     name=input("What is your name? ")
     email=input("What is your email? ")
     account=input("What is your account number? ")
     check(name.lower(), email, account)
-    get(name.lower())
-    
+    User_account = BankAccount("Isabella", "isabella@gmail.com", get(name.lower()))
+    money(User_account)
+    addmoney(name.lower(), email, account, User_account)
 
 if login.lower() == "sign up":
     name=input("What is your name? ")
     email=input("What is your email? ")
+    validemail(email)
     User_account = BankAccount(name.lower(), email, 0)
     User_account.findaccount()
     User_account.save()
