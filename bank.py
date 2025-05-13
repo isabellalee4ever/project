@@ -137,8 +137,3 @@ if login.lower() == "sign up":
     User_account.seedetails()
     money(User_account)
     User_account.save()
-
-
-
-print("HIIIIIIIIIIIIII!!!!!!!!!!!!!!!")
-
